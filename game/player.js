@@ -3,7 +3,7 @@ function Player(){
 
 
 	this.draw = function(){
-		fill("#F24976");
+		fill("#F24738");
 		noStroke();
 		rect(this.xPos, 630, 50, 50, 15);
 	}
