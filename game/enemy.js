@@ -1,6 +1,10 @@
 function Enemy(xPos, yPos){
 	this.xPos = xPos;
 	this.yPos = yPos; 
+
+	this.initialX = xPos;
+	this.initialY = yPos;
+
 	this.radius = 50;
 	this.xDir = 1;
 
@@ -16,7 +20,12 @@ function Enemy(xPos, yPos){
 
 	this.changeDirection = function() {
     	this.xDir *= -1;
-    	this.yPos += this.radius / 2;
-}
+    	this.yPos += this.radius;
+	}
+
+	this.reset = function(){		
+		this.xPos = this.initialX;
+		this.yPos = this.initialY;
+	}
 
 }

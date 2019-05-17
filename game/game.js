@@ -2,6 +2,7 @@ function preload(){
 	let player;
 	let enemies;
 	let hitEdge;
+	let hitBottom;
 	let state;
 }
 
@@ -14,6 +15,7 @@ function setup(){
 	player = new Player();
 	enemies = makeEnemies();
 	hitEdge = false;
+	hitBottom = false;
 	state = "mainMenu";
 }
 
@@ -30,19 +32,31 @@ function draw(){
 			player.update();
 
 			enemies.forEach(function(enemy){
-			enemy.draw();	
-			enemy.update();
+				enemy.draw();	
+				enemy.update();
 
-			if((enemy.xPos + enemy.radius / 2 > width) || (enemy.xPos - enemy.radius / 2) < 0){
-				hitEdge = true
-			}
+				if((enemy.xPos + enemy.radius / 2 > width) || (enemy.xPos - enemy.radius / 2) < 0){
+					hitEdge = true
+				}
+
+				if(enemy.yPos + enemy.radius > 500){
+					hitBottom = true;
+				}
+
 			})
 
 			if (hitEdge){
 				enemies.forEach(function(enemy){
-				enemy.changeDirection();
+					enemy.changeDirection();
 			})
 				hitEdge = false;
+			}
+
+			if (hitBottom){
+				enemies.forEach(function(enemy){
+					enemy.reset();
+				})
+				hitBottom = false;
 			}
 
 
